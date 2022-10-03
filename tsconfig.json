@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@config/*":["src/config/*"],
+      "@enum/*":["src/config/enum/*"],
+      "@interfaces/*":["src/config/interfaces/*"],
+      "@controllers/*":["src/controllers/*"],
+      "@modules/*":["src/modules/*"],
+      "@services/*":["src/services/*"],
+      "@dto/*":["src/dto/*"],
+      "@entities/*":["src/entities/*"],
+      "@repository/*":["src/repository/*"],
+      "@utils/*":["src/utils/*"],
+      "@strategy/*":["src/strategy/*"],
+      "@decorators/*":["src/decorators/*"],
+      "@interceptors/*":["src/interceptors/*"],
+    },
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
+  }
+}

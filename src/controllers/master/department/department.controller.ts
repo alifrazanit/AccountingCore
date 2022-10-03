@@ -1,0 +1,111 @@
+import { callback } from '@config/interfaces/common/callback.interface';
+import { GetActionFilterDto } from '@dto/filters/action-filter.dto';
+import { m_departement } from '@entities/m_department.entity';
+import { Controller, Get, UseGuards, Post, Param, Query, Body, BadRequestException, Put, Delete } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { MDepartmentService } from '@services/master/m-department/m-department.service';
+import { UtilsService } from '@utils/utils.service';
+import { createDeptDto, updateDeptDto } from '@dto/models/m_departement.dto';
+import { m_departmentCreateInterface, m_departmentUpdateInterface } from '@interfaces/models/m_department.interface';
+import { NotFoundException } from '@nestjs/common';
+import { GetUser } from '../../../decorators/get-employee.decorator';
+import { m_users } from '@entities/m_users.entity';
+@Controller('master/m-department')
+@UseGuards(AuthGuard())
+export class DepartmentController {
+    constructor(
+        private mDeptService: MDepartmentService,
+        private utils: UtilsService
+    ) { }
+
+    @Get()
+    async getUser(@Query() filterDto: GetActionFilterDto): Promise<callback> {
+        let data: m_departement[] = await this.mDeptService.getDept(filterDto);
+        return {
+            data,
+            error: false,
+            message: '',
+            status: 200
+        }
+    }
+
+    @Get('/:department_code')
+    async getCustByUUID(@Param('department_code') department_code: string): Promise<callback> {
+        let data: m_departement = await this.mDeptService.getDeptByCode(department_code);
+        return {
+            data,
+            error: false,
+            message: '',
+            status: 200
+        }
+    }
+
+    @Post('/create')
+    async create(@Body() payload: createDeptDto, 
+    @GetUser() user: m_users) {
+        const { departement, id_subdepartement } = payload;
+        const genCode = await this.mDeptService.genCode();
+
+        const setPayload: m_departmentCreateInterface = {
+            departement,
+            department_code: genCode,
+            id_subdepartment: id_subdepartement,
+            is_active: 'Y'
+        }
+        // const res = await this.mDeptService.createDept(setPayload, user);
+        // return {
+        //     data: res,
+        //     error: false,
+        //     message: '',
+        //     status: 200
+        // }
+    }
+
+    @Put('/:department_code/update')
+    async updateUser(@Param('department_code') department_code: string, @Body() body: updateDeptDto): Promise<callback> {
+        let data: m_departement = await this.mDeptService.getDeptByCode(department_code);
+        if (!data) {
+            throw new NotFoundException({
+                data: '',
+                error: true,
+                message: 'Data Not Found!',
+                status: 404
+            });
+        }
+        const { departement, id_subdepartement, is_active } = body;
+
+        const setPayload: m_departmentUpdateInterface = {
+            departement,
+            department_code,
+            id_subdepartment: id_subdepartement,
+            is_active
+        }
+        const res = await this.mDeptService.updateDept(setPayload);
+        return {
+            data: res,
+            error: false,
+            message: '',
+            status: 200
+        }
+    }
+
+    @Delete('/:department_code/delete')
+    async deleteAction(@Param('department_code') department_code: string): Promise<callback> {
+        let data: m_departement = await this.mDeptService.getDeptByCode(department_code);
+        if(!data){
+            throw new NotFoundException({
+                data: '',
+                error: true,
+                message: 'Data Not Found!',
+                status: 404
+            });
+        }
+        const res = await this.mDeptService.deactivateDept(department_code);
+        return {
+            data: res,
+            error: false,
+            message: '',
+            status: 200
+        }
+    }
+}
