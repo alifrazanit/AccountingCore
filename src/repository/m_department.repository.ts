@@ -22,8 +22,11 @@ export class mDepartmentRepository extends Repository<m_departement>{
             departement: payload.departement,
             department_code: payload.department_code,
             is_active: payload.is_active,
-            subdepartement: subdept
+            subdepartement: subdept,
+            id_subdepartment: payload.id_subdepartment
         });
+        console.log('subdepartement', subdept);
+        console.log('payload', payload);
         try {
             await this.save(dept);
             return dept;

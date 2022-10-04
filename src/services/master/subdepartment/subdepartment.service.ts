@@ -18,7 +18,7 @@ export class SubdepartmentService {
         return this.mSubdept.getDept(filterDto);
     }
 
-    async getDeptByCode(code: string): Promise<m_subdepartement> {
+    async getDeptByCode(code: number): Promise<m_subdepartement> {
         return await this.mSubdept.getDeptByCode(code);
     }
 

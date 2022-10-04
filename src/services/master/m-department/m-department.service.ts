@@ -32,7 +32,6 @@ export class MDepartmentService {
         }
         const tmpCode = `DEPT${m}`;
         let deptCode = '';
-        console.log('tmpCode', tmpCode)
         const query = this.mDeptRepo.createQueryBuilder('m_departement');
         query.where('m_departement.department_code LIKE :search ORDER BY department_code DESC', { search: `${tmpCode}%` });
         const rowData = await query.getMany();

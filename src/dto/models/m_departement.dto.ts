@@ -15,7 +15,7 @@ export class m_departementDto {
     departement: string;  
     
     @IsNotEmpty()
-    id_subdepartement: number;
+    id_subdepartment: number;
 
     @IsNotEmpty()
     is_active: 'Y' | 'N';
@@ -28,7 +28,7 @@ export class createDeptDto{
     departement: string;  
     
     @IsNotEmpty()
-    id_subdepartement: number;
+    id_subdepartment: number;
 }
 
 export class updateDeptDto{
@@ -38,7 +38,7 @@ export class updateDeptDto{
     departement: string;  
     
     @IsNotEmpty()
-    id_subdepartement: number;
+    id_subdepartment: number;
 
     @IsNotEmpty()
     is_active: 'Y' | 'N';

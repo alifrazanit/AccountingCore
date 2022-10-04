@@ -26,6 +26,5 @@ export class m_departement {
     is_active: string;
 
     @OneToOne((_column) => m_subdepartement, (subdepartment) => subdepartment.departement, { eager: true})
-    @JoinColumn()
     subdepartement: m_subdepartement
 }

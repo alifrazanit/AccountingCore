@@ -54,7 +54,7 @@ export class mSubDepartmentRepository extends Repository<m_subdepartement>{
         return dept;
     }
 
-    async getDeptByCode(code: string): Promise<m_subdepartement>{
-        return await this.findOne({ where: { subdepartment: code }})
+    async getDeptByCode(code: number): Promise<m_subdepartement>{
+        return await this.findOne({ where: { id: code }})
     }
 }
