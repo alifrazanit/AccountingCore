@@ -30,7 +30,10 @@ export class m_accounts {
     updated: Date;
 
     @Column()
-    cratedDate: Date;
+    createdDate: Date;
+
+    @Column()
+    id_users: number;
 
     @ManyToOne(() => m_users, (userAccount) => userAccount.mAccount, { eager: false })
     @Exclude({ toPlainOnly: true})

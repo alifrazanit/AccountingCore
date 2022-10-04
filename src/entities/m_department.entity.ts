@@ -17,6 +17,9 @@ export class m_departement {
     })
     departement: string;
 
+    @Column()
+    id_subdepartment: number;
+
     @Column({
         length: 1,
     })
@@ -24,5 +27,5 @@ export class m_departement {
 
     @OneToOne((_column) => m_subdepartement, (subdepartment) => subdepartment.departement, { eager: true})
     @JoinColumn()
-    id_subdepartment: m_subdepartement
+    subdepartement: m_subdepartement
 }

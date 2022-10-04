@@ -38,9 +38,10 @@ export class AccountsController {
             account_code: await this.accountsService.genCode(),
             account_name: String(tmpData.account_name).charAt(0).toUpperCase() + String(tmpData.account_name).slice(1),
             balance: 0,
-            cratedDate: new Date(this.utils.formatDate(new Date())),
+            createdDate: new Date(this.utils.formatDate(new Date())),
             isActive: 'Y',
-            updated: new Date(this.utils.formatDate(new Date()))
+            updated: new Date(this.utils.formatDate(new Date())),
+            id_users: user.id_users
         }
         const res = await this.accountsService.createAccount(payload, user);
         return {
@@ -52,7 +53,10 @@ export class AccountsController {
     }
 
     @Put('/:account_code/update')
-    async updateAccount(@Param('account_code') account_code: string, @Body() body: m_accountsUpdateDto) {
+    async updateAccount(
+        @Param('account_code') account_code: string, 
+        @Body() body: m_accountsUpdateDto,
+        @GetUser() user: m_users) {
         let tmpData: any[] = await this.accountsService.getAction({ search: account_code });
         if (tmpData.length == 0) {
             throw new NotFoundException({
@@ -66,9 +70,10 @@ export class AccountsController {
         let payload: m_accountUpdateInterface = {
             account_name: String(account_name).charAt(0).toUpperCase() + String(account_name).slice(1),
             isActive: isActive,
-            updated: new Date(this.utils.formatDate(new Date()))
+            updated: new Date(this.utils.formatDate(new Date())),
+            id_users: user.id_users
         }
-        const res = await this.accountsService.updateAccount(account_code, payload);
+        const res = await this.accountsService.updateAccount(account_code, payload, user);
         return {
             data: res,
             error: false,

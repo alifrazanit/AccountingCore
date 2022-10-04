@@ -22,7 +22,7 @@ export class mDepartmentRepository extends Repository<m_departement>{
             departement: payload.departement,
             department_code: payload.department_code,
             is_active: payload.is_active,
-            id_subdepartment: subdept
+            subdepartement: subdept
         });
         try {
             await this.save(dept);

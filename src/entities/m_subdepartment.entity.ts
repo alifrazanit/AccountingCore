@@ -12,6 +12,6 @@ export class m_subdepartement {
     })
     subdepartment: string;
 
-    @OneToOne((_column) => m_departement, (departement) => departement.id_subdepartment, { eager: false})
+    @OneToOne((_column) => m_departement, (departement) => departement.subdepartement, { eager: false})
     departement: m_departement;
 }
