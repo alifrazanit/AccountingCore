@@ -8,9 +8,6 @@ export class m_subdepartementDto {
     @IsString()
     @MaxLength(50)
     subdepartement: string;  
-
-    @IsNotEmpty()
-    is_active: boolean;
 }
 
 
@@ -19,4 +16,14 @@ export class m_CreateSubdepartementDto {
     @IsString()
     @MaxLength(50)
     subdepartement: string;  
+}
+
+export class m_UpdateSubdepartementDto {
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(50)
+    subdepartement: string;  
+
+    @IsNotEmpty()
+    isActive:'Y' | 'N';  
 }

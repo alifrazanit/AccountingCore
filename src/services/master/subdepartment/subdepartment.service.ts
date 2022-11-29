@@ -25,4 +25,15 @@ export class SubdepartmentService {
     async createDept(payload: m_subdeptCreateInterface): Promise<m_subdepartement> {
         return await this.mSubdept.createDepartment(payload);
     }
+
+    async updateDept(id_subdepartment: number, payload: m_subdeptCreateInterface): Promise<m_subdepartement> {
+        return await this.mSubdept.updateDepartement(id_subdepartment, payload);
+    }
+
+    async deactivate(id: number): Promise<m_subdepartement> {
+        const subdepartment = await this.getDeptByCode(id);
+        subdepartment.isActive = 'N';
+        await this.mSubdept.save(subdepartment);
+        return subdepartment;
+    }
 }

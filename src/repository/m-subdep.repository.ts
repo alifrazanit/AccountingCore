@@ -1,5 +1,5 @@
 import { DataSource, Repository } from 'typeorm';
-import { ConflictException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { ConflictException,NotFoundException,  Injectable, InternalServerErrorException } from '@nestjs/common';
 import { m_subdepartement } from '@entities/m_subdepartment.entity';
 import { Label } from '@config/label';
 import { UtilsService } from '@utils/utils.service';
@@ -46,7 +46,7 @@ export class mSubDepartmentRepository extends Repository<m_subdepartement>{
 
     async getDept(filterDto: GetActionFilterDto): Promise<m_subdepartement[]>{
         const { search } = filterDto;
-        const query = this.createQueryBuilder('m_customer');
+        const query = this.createQueryBuilder('m_subdepartement');
         if(search){
             query.where('LOWER(m_subdepartement.subdepartment) like LOWER(:search) OR LOWER(m_subdepartement.subdepartment) like LOWER(:search)', { search: `%${search}%`})
         }
@@ -56,5 +56,20 @@ export class mSubDepartmentRepository extends Repository<m_subdepartement>{
 
     async getDeptByCode(code: number): Promise<m_subdepartement>{
         return await this.findOne({ where: { id: code }})
+    }
+
+    async updateDepartement(id: number, payload: m_subdeptCreateInterface): Promise<m_subdepartement> {
+        const supDept = await this.findOne({ where: { id: id }});
+        if (!supDept) {
+            throw new NotFoundException({
+                data: '',
+                error: true,
+                message: this.label.notification.dataNotfound,
+                status: 404
+            });
+        }
+        supDept.subdepartment = payload.subdepartment;
+        await this.save(supDept);
+        return supDept;
     }
 }

@@ -12,6 +12,11 @@ export class m_subdepartement {
     })
     subdepartment: string;
 
+    @Column({
+        length: 1
+    })
+    isActive: string;
+
     @OneToOne((_column) => m_departement, (departement) => departement.subdepartement, { eager: false})
     departement: m_departement;
 }
