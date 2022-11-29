@@ -48,6 +48,7 @@ export class MUserController {
         const hashedPassowrd = await bcrypt.hash(tmpData.password, salt);
         let phone: any = '';
         const tmpPhone = await this.utils.genPhone(tmpData.phone);
+        
         if (tmpPhone === '') {
             throw new BadRequestException({
                 data: '',
