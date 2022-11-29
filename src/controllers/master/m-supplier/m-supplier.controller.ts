@@ -90,7 +90,7 @@ export class MSupplierController {
                 status: 404
             });
         }
-        const { address, city, country, email, name, phone, postalcode, cp } = body;
+        const { address, city, country, email, name, is_active, phone, postalcode, cp } = body;
         let mobilePhone: any = '';
         const tmpPhone = await this.utils.genPhone(phone);
         if (tmpPhone === '') {
@@ -123,7 +123,9 @@ export class MSupplierController {
             postalcode: postalcode,
             uuid: uuid,
             updated: new Date(this.utils.formatDate(new Date())),
-            cp
+            cp,
+            isActive: is_active,
+            inactiveDate: is_active === 'Y' ? new Date(this.utils.formatDate(new Date())) : null
         }
         const res = await this.mSupplierService.updateUser(setPayload);
         return {

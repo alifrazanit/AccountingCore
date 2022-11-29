@@ -83,7 +83,7 @@ export class MSupplierService {
     }
 
     async updateUser(payload: m_supplierUpdateInterface): Promise<m_supplier> {
-        const { uuid, address, city, country, email, name, phone, postalcode, updated, cp } = payload;
+        const { uuid, address, city, isActive, inactiveDate, country, email, name, phone, postalcode, updated, cp } = payload;
         const user = await this.getUserByUUID(uuid);
         if (!user) {
             throw new NotFoundException({
@@ -102,7 +102,8 @@ export class MSupplierService {
         user.postalcode = postalcode;
         user.updated = updated;
         user.cp = cp;
-        console.log(user)
+        user.isActive = isActive;
+        user.inactiveDate = inactiveDate;
         await this.mSuppRepo.save(user);
         return user;
     }

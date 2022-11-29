@@ -90,7 +90,7 @@ export class MCustomerController {
                 status: 404
             });
         }
-        const { address, city, country, email, name, phone, postalcode } = body;
+        const { address, city, country, email, name, phone, postalcode, is_active } = body;
         let mobilePhone: any = '';
         const tmpPhone = await this.utils.genPhone(phone);
         if (tmpPhone === '') {
@@ -122,7 +122,10 @@ export class MCustomerController {
             phone,
             postalcode: postalcode,
             uuid: uuid,
-            updated: new Date(this.utils.formatDate(new Date()))
+            updated: new Date(this.utils.formatDate(new Date())),
+            isActive: is_active,
+            inactiveDate: is_active === 'Y' ? new Date(this.utils.formatDate(new Date())) : null
+            
         }
         const res = await this.mCustService.updateUser(setPayload);
         return {

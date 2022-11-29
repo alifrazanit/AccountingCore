@@ -84,7 +84,7 @@ export class MCustomerService {
     }
 
     async updateUser(payload: m_customerUpdateInterface): Promise<m_customer> {
-        const { uuid, address, city, country, email, name, phone, postalcode, updated } = payload;
+        const { uuid, address, city, country, email,isActive,inactiveDate, name, phone, postalcode, updated } = payload;
         const user = await this.getUserByUUID(uuid);
         if (!user) {
             throw new NotFoundException({
@@ -102,6 +102,8 @@ export class MCustomerService {
         user.phone = phone;
         user.postalcode = postalcode;
         user.updated = updated;
+        user.isActive = isActive;
+        user.inactiveDate = inactiveDate;
         await this.mCustomerRepo.save(user);
         return user;
     }

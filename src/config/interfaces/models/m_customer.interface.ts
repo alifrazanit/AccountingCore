@@ -22,5 +22,6 @@ export interface m_customerUpdateInterface{
     postalcode: string;
     uuid?: string;
     updated: any;
+    isActive: 'Y' | 'N'
     inactiveDate?: any;
 }

@@ -134,4 +134,7 @@ export class updateSuppDto{
     @IsString()
     @MaxLength(50)
     cp: string;
+
+    @IsNotEmpty()
+    is_active: 'Y' | 'N';
 }

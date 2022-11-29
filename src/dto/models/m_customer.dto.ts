@@ -127,4 +127,7 @@ export class updateCustDto{
     @IsString()
     @MaxLength(10)
     postalcode: string;
+
+    @IsNotEmpty()
+    is_active: 'Y' | 'N';
 }

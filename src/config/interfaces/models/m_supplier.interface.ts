@@ -25,4 +25,5 @@ export interface m_supplierUpdateInterface{
     updated: any;
     inactiveDate?: any;
     cp: string;
+    isActive: 'Y' | 'N'
 }
