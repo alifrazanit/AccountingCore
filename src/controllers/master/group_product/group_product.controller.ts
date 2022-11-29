@@ -29,6 +29,17 @@ export class GroupProductController {
         }
     }
 
+    @Get('/:id')
+    async getGroupProductByID(@Param('id') id: string): Promise<callback> {
+        let data: group_product = await this.groupProductService.getOneByCode(id);
+        return {
+            data,
+            error: false,
+            message: '',
+            status: 200
+        }
+    }
+
     @Post('/create')
     async create(@Body() payload: createGroup_productDto) {
         const tmpData: any = payload;
@@ -61,6 +72,26 @@ export class GroupProductController {
             group_name
         }
         const res = await this.groupProductService.updateGroup(setPayload);
+        return {
+            data: res,
+            error: false,
+            message: '',
+            status: 200
+        }
+    }
+
+    @Delete('/:id/delete')
+    async deleteAction(@Param('id') id: string): Promise<callback> {
+        let data: group_product = await this.groupProductService.getOneByCode(id);
+        if(!data){
+            throw new NotFoundException({
+                data: '',
+                error: true,
+                message: 'Data Not Found!',
+                status: 404
+            });
+        }
+        const res = await this.groupProductService.deleteGroupProduct(id);
         return {
             data: res,
             error: false,

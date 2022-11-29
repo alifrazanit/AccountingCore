@@ -5,6 +5,7 @@ import { UtilsService } from '@utils/utils.service';
 import { GetActionFilterDto } from '@dto/filters/action-filter.dto';
 import { group_product } from '@entities/group_product.entity';
 import { groupProductCreateInterface, groupProductUpdateInterface } from '@interfaces/models/group_product.interface';
+import { resourceLimits } from 'worker_threads';
 
 @Injectable()
 export class GroupProductService {
@@ -44,5 +45,17 @@ export class GroupProductService {
         groupProduct.group_name = group_name;
         await this.groupProductRepo.save(groupProduct);
         return groupProduct;
+    }
+
+    async deleteGroupProduct(id: string): Promise<void> {
+        const result = await this.groupProductRepo.delete(id);
+        if(result.affected === 0){
+            throw new NotFoundException({
+                data: '',
+                error: true,
+                message: this.label.notification.dataNotfound,
+                status: 404
+            });
+        }
     }
 }
