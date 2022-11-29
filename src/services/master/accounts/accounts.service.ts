@@ -49,10 +49,8 @@ export class AccountsService {
     }
 
     async updateAccount(code: string, payload: m_accountUpdateInterface, user: m_users): Promise<m_accounts> {
-        const { account_name, isActive, updated, id_users } = payload;
+        const { account_name, isActive, updated } = payload;
         const account = await this.getActionByCode(code);
-        account.id_users = id_users;
-        account.mUser = user;
         account.account_name = account_name;
         account.isActive = isActive;
         account.updated = updated;

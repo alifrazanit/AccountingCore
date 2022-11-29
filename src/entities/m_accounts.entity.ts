@@ -32,10 +32,4 @@ export class m_accounts {
     @Column()
     createdDate: Date;
 
-    @Column()
-    id_users: number;
-
-    @ManyToOne(() => m_users, (userAccount) => userAccount.mAccount, { eager: false })
-    @Exclude({ toPlainOnly: true})
-    mUser: m_users;
 }

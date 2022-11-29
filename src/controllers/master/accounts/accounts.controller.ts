@@ -28,6 +28,16 @@ export class AccountsController {
         }
     }
 
+    @Get('/:code')
+    async getUserByUUID(@Param('code') code: string): Promise<callback> {
+        let data:m_accounts = await this.accountsService.getActionByCode(code);
+        return {
+            data,
+            error: false,
+            message: '',
+            status: 200
+        }
+    }
 
     @Post('/create')
     async createAccount(
@@ -40,8 +50,7 @@ export class AccountsController {
             balance: 0,
             createdDate: new Date(this.utils.formatDate(new Date())),
             isActive: 'Y',
-            updated: new Date(this.utils.formatDate(new Date())),
-            id_users: user.id_users
+            updated: new Date(this.utils.formatDate(new Date()))
         }
         const res = await this.accountsService.createAccount(payload, user);
         return {
@@ -71,7 +80,6 @@ export class AccountsController {
             account_name: String(account_name).charAt(0).toUpperCase() + String(account_name).slice(1),
             isActive: isActive,
             updated: new Date(this.utils.formatDate(new Date())),
-            id_users: user.id_users
         }
         const res = await this.accountsService.updateAccount(account_code, payload, user);
         return {

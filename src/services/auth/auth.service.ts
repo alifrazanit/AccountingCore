@@ -21,7 +21,7 @@ export class AuthService {
 
     async signIn(p: loginDto): Promise<{ token: string}>{
         const { password, username } = p;
-        const user = await this.mUserRepo.findOne({ where: { username }});
+        const user = await this.mUserRepo.findOne({ where: { username, isActive: 'Y' }});
         if(user && (await bcrypt.compare(password, user.password))){
             const payloadUsername = { username };
             const encryptData = this.utils.ecryptObj(payloadUsername);

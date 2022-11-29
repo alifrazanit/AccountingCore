@@ -12,12 +12,10 @@ export interface m_accountCreatesInterface {
     isActive: 'Y' | 'N';
     createdDate: Date;
     updated: Date;
-    id_users: number;
 }
 
 export interface m_accountUpdateInterface {
     account_name: string;
     isActive: 'Y' | 'N';
     updated: Date;
-    id_users: number;
 }

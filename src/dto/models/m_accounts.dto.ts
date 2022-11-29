@@ -6,7 +6,7 @@ export class m_accountsDto {
 
     @IsNotEmpty()
     @IsString()
-    @MaxLength(30)
+    @MaxLength(5)
     account_code: string; 
 
     @IsNotEmpty()

@@ -107,7 +107,4 @@ export class m_users {
         nullable: true
     })
     inactiveDate: Date;
-
-    @OneToMany(() => m_accounts, (account) => account.mUser, { eager: true })
-    mAccount: m_accounts[];
 }

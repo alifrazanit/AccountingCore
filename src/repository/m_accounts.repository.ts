@@ -33,8 +33,7 @@ export class mAccountsRepository extends Repository<m_accounts>{
 
     async craeteAccount(payload: m_accountCreatesInterface, user: m_users): Promise<m_accounts> {
         const accounts = this.create({
-            ...payload,
-            mUser: user
+            ...payload
         });
         try {
             await this.save(accounts);
