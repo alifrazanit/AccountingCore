@@ -46,17 +46,16 @@ export class DepartmentController {
     @Post('/create')
     async create(@Body() payload: createDeptDto) {
         const { departement, id_subdepartment } = payload;
-        const subdepartment = await this.subdepartmentService.getDeptByCode(id_subdepartment);
+        const subdepartment = await this.subdepartmentService.getActiveDeptByCode(id_subdepartment);
         if(!subdepartment){
             throw new NotFoundException({
                 data: '',
                 error: true,
-                message: 'Data Not Found!',
+                message: 'Subdepartement Not Active or Not Found',
                 status: 404
             }); 
         }
         const genCode = await this.mDeptService.genCode();
-
         const setPayload: m_departmentCreateInterface = {
             departement,
             department_code: genCode,
@@ -85,13 +84,22 @@ export class DepartmentController {
         }
         const { departement, id_subdepartment, is_active } = body;
 
+        const subdepartement = await this.subdepartmentService.getDeptByCode(id_subdepartment);
+        if (!subdepartement) {
+            throw new NotFoundException({
+                data: '',
+                error: true,
+                message: 'Data Not Found!',
+                status: 404
+            });
+        }
+
         const setPayload: m_departmentUpdateInterface = {
             departement,
             department_code,
-            id_subdepartment: id_subdepartment,
             is_active
         }
-        const res = await this.mDeptService.updateDept(setPayload);
+        const res = await this.mDeptService.updateDept(setPayload, subdepartement);
         return {
             data: res,
             error: false,

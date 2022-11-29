@@ -56,8 +56,8 @@ export class MDepartmentService {
         return await this.mDeptRepo.createDepartment(payload, subdept);
     }
 
-    async updateDept(payload: m_departmentUpdateInterface): Promise<m_departement> {
-        const {  department_code, departement, id_subdepartment, is_active } = payload;
+    async updateDept(payload: m_departmentUpdateInterface, subdept: m_subdepartement): Promise<m_departement> {
+        const {  department_code, departement, is_active } = payload;
         const dept = await this.getDeptByCode(department_code);
         if (!dept) {
             throw new NotFoundException({
@@ -69,7 +69,7 @@ export class MDepartmentService {
         }
         dept.departement = departement;
         dept.department_code = department_code;
-        // dept.id_subdepartment = id_subdepartment;
+        dept.subdepartement = subdept;
         dept.is_active = is_active;
         await this.mDeptRepo.save(dept);
         return dept;

@@ -22,6 +22,10 @@ export class SubdepartmentService {
         return await this.mSubdept.getDeptByCode(code);
     }
 
+    async getActiveDeptByCode(code: number): Promise<m_subdepartement> {
+        return await this.mSubdept.getActiveDeptByCode(code);
+    }
+
     async createDept(payload: m_subdeptCreateInterface): Promise<m_subdepartement> {
         return await this.mSubdept.createDepartment(payload);
     }

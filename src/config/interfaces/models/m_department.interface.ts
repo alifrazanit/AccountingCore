@@ -8,6 +8,5 @@ export interface m_departmentCreateInterface {
 export interface m_departmentUpdateInterface{
     department_code: string;
     departement: string;
-    id_subdepartment: number;
     is_active: 'Y' | 'N';
 }

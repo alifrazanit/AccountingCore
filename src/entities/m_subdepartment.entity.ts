@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 import { m_departement } from '@entities/m_department.entity';
 
 @Entity()
@@ -17,6 +17,6 @@ export class m_subdepartement {
     })
     isActive: string;
 
-    @OneToOne((_column) => m_departement, (departement) => departement.subdepartement, { eager: false})
+    @OneToMany((_column) => m_departement, (departement) => departement.subdepartement)
     departement: m_departement;
 }

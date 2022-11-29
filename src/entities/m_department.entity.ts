@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
 import { m_subdepartement  } from './m_subdepartment.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class m_departement {
@@ -17,14 +18,13 @@ export class m_departement {
     })
     departement: string;
 
-    @Column()
-    id_subdepartment: number;
-
     @Column({
         length: 1,
     })
     is_active: string;
 
-    @OneToOne((_column) => m_subdepartement, (subdepartment) => subdepartment.departement, { eager: true})
-    subdepartement: m_subdepartement
+    @ManyToOne((_column) => m_subdepartement)
+    @JoinColumn({ name: 'id_subdepartment'})
+    @Exclude({ toPlainOnly: true })
+    subdepartement: m_subdepartement;
 }

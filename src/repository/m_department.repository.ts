@@ -22,16 +22,13 @@ export class mDepartmentRepository extends Repository<m_departement>{
             departement: payload.departement,
             department_code: payload.department_code,
             is_active: payload.is_active,
-            subdepartement: subdept,
-            id_subdepartment: payload.id_subdepartment
-        });
-        console.log('subdepartement', subdept);
-        console.log('payload', payload);
+            subdepartement: subdept
+        })
         try {
             await this.save(dept);
             return dept;
         } catch (err) {
-            console.log('err', err)
+            console.log(err)
             if (err.code === '23505') {
                 const detail: string = err.detail;
                 let field = this.utils.fetchErrorInsideString(detail);
