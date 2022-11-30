@@ -28,17 +28,6 @@ export class MUomController {
         }
     }
 
-    @Get('/:code')
-    async getUOMByCode(@Param('code') code: string): Promise<callback> {
-        let data: m_uom = await this.mUomServc.getByCode(code);
-        return {
-            data,
-            error: false,
-            message: '',
-            status: 200
-        }
-    }
-
     @Post('/create')
     async create(@Body() payload: createUomDto) {
         const genCode = await this.mUomServc.genCode();
@@ -85,9 +74,9 @@ export class MUomController {
         }
     }
 
-    @Delete('/:tax_code/delete')
-    async deleteAction(@Param('tax_code') tax_code: string): Promise<callback> {
-        let data: m_uom = await this.mUomServc.getByCode(tax_code);
+    @Delete('/:uom_code/delete')
+    async deleteAction(@Param('uom_code') uom_code: string): Promise<callback> {
+        let data: m_uom = await this.mUomServc.getByCode(uom_code);
         if (!data) {
             throw new NotFoundException({
                 data: '',
@@ -96,7 +85,7 @@ export class MUomController {
                 status: 404
             });
         }
-        const res = await this.mUomServc.deactivateUom(tax_code);
+        const res = await this.mUomServc.deactivateUom(uom_code);
         return {
             data: res,
             error: false,
