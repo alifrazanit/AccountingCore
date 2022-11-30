@@ -29,16 +29,6 @@ export class MTaxController {
         }
     }
 
-    @Get('/:tax_code')
-    async getCustByUUID(@Param('tax_code') tax_code: string): Promise<callback> {
-        let data: m_tax = await this.mTaxService.getTaxByCode(tax_code);
-        return {
-            data,
-            error: false,
-            message: '',
-            status: 200
-        }
-    }
 
     @Post('/create')
     async create(@Body() payload: createmTaxDto) {

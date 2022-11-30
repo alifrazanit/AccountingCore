@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, MaxLength, IsInt, Max, Min } from 'class-validator';
+import { IsNotEmpty, IsString, MaxLength, IsInt, Max, Min, IsDecimal } from 'class-validator';
 
 
 export class m_taxDto {
