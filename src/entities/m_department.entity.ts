@@ -8,17 +8,20 @@ export class m_departement {
     id: number;
 
     @Column({
+        type:'char',
         length: 9,
         unique: true
     })
     department_code: string;
 
     @Column({
+        type:'varchar',
         length: 50,
     })
     departement: string;
 
     @Column({
+        type:'char',
         length: 1,
     })
     is_active: string;

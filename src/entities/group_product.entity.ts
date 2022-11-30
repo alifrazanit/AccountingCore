@@ -6,6 +6,7 @@ export class group_product {
     id_group_product: number;
 
     @Column({
+        type:'varchar',
         length: 50,
     })
     group_name: string;

@@ -5,12 +5,14 @@ export class m_tax {
     id_tax: number;
 
     @Column({
+        type:'char',
         unique: true,
         length: 9,
     })
     tax_code: string;
 
     @Column({
+        type:'varchar',
         length: 15,
         unique: true,
     })
@@ -20,6 +22,7 @@ export class m_tax {
     percentage: number;
 
     @Column({
+        type:'char',
         length: 1,
     })
     is_active: string;

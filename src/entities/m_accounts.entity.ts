@@ -7,29 +7,38 @@ export class m_accounts {
     id_account: number;
 
     @Column({
+        type:'char',
         unique: true,
         length: 5,
     })
     account_code: string;
 
     @Column({
+        type:'varchar',
         unique: true,
         length: 50,
     })
     account_name: string;
 
-    @Column()
+    @Column({
+        type:'double'
+    })
     balance: number;
 
     @Column({
+        type:'char',
         length: 1
     })
     isActive: string;
 
-    @Column()
+    @Column({
+        type:'datetime'
+    })
     updated: Date;
 
-    @Column()
+    @Column({
+        type:'datetime'
+    })
     createdDate: Date;
 
 }

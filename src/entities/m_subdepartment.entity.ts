@@ -7,12 +7,14 @@ export class m_subdepartement {
     id: number;
 
     @Column({
+        type:'varchar',
         length: 50,
         unique: true
     })
     subdepartment: string;
 
     @Column({
+        type:'char',
         length: 1
     })
     isActive: string;
