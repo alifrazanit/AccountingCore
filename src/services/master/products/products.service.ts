@@ -76,7 +76,6 @@ export class ProductsService {
         }
         product.description = payload.description;
         product.id_group_product = payload.id_group_product;
-        product.id_product = payload.id_product;
         product.id_purchase_tax = payload.id_purchase_tax;
         product.id_sales_tax = payload.id_sales_tax;
         product.id_supplier = payload.id_supplier;
@@ -86,7 +85,6 @@ export class ProductsService {
         product.purchase_price = payload.purchase_price;
         product.selling_price = payload.selling_price;
         product.updated = payload.updated;
-        console.log('product', product)
         try {
             await this.mProductRepo.save(product);
             return product;
