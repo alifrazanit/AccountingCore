@@ -30,7 +30,7 @@ Pengembangan Aplikasi ini dibagi menjadi beberapa tahapan sprint berdasarkan mod
 
 Kelemahan dalam aplikasi ini adalah tidak adanya orang yang ahli dalam akuntansi yang dilibatkan dalam proses pengembanagan aplikasi ini sehingga akan dimungkinan adanya kesalahan terutama dalam bisnis proses aplikasi akuntansi itu sendiri.
 
-dokumentasi dari API Anda bisa lihat di link berikut: (soon ASAP)
+dokumentasi dari API Anda bisa lihat di link berikut: https://documenter.getpostman.com/view/24292726/2s8Yt1rUtF
 ## Installation
 
 ```bash
