@@ -10,5 +10,12 @@ export interface purchaseJournalInterface {
     ed_dist_term: number;
     ed_term: number;
     id_supplier: number;
-    id_customer: number;
+    description: string;
+}
+
+export interface purchaseJournalLineInterface {
+    iid_product: number;
+    qty: number;
+    price: number;
+    subtotal: number;
 }

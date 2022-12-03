@@ -30,7 +30,7 @@ export class MSupplierController {
 
     @Get('/:uuid')
     async getCustByUUID(@Param('uuid') uuid: string): Promise<callback> {
-        let data: m_supplier = await this.mSupplierService.getUserByUUID(uuid);
+        let data: m_supplier = await this.mSupplierService.getSupplierByUUID(uuid);
         return {
             data,
             error: false,
@@ -81,7 +81,7 @@ export class MSupplierController {
 
     @Put('/:uuid/update')
     async updateUser(@Param('uuid') uuid: string, @Body() body: updateSuppDto): Promise<callback> {
-        let data: m_supplier = await this.mSupplierService.getUserByUUID(uuid);
+        let data: m_supplier = await this.mSupplierService.getSupplierByUUID(uuid);
         if(!data){
             throw new NotFoundException({
                 data: '',
@@ -138,7 +138,7 @@ export class MSupplierController {
 
     @Delete('/:uuid/delete')
     async deleteAction(@Param('uuid') uuid: string): Promise<callback> {
-        let data: m_supplier = await this.mSupplierService.getUserByUUID(uuid);
+        let data: m_supplier = await this.mSupplierService.getSupplierByUUID(uuid);
         if(!data){
             throw new NotFoundException({
                 data: '',

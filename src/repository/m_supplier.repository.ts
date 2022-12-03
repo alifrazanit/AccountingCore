@@ -39,9 +39,12 @@ export class mSupplierRepository extends Repository<m_supplier>{
                 });
             }
         }
-
-        
     } 
+
+
+    async getSupplierByID(id: any): Promise<m_supplier>{
+        return await this.findOne({ where: { id_supplier: id }})
+    }
 
     async getSupplier(filterDto: GetActionFilterDto): Promise<m_supplier[]>{
         const { search } = filterDto;

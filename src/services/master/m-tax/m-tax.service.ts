@@ -34,8 +34,6 @@ export class MTaxService {
         const query = this.mTaxRepo.createQueryBuilder('m_tax');
         query.where('m_tax.tax_code LIKE :search ORDER BY tax_code DESC', { search: `${tmpCode}%` });
         const rowData = await query.getMany();
-        console.log('rowData', rowData)
-
         if (rowData.length !== 0) {
             let countCode = rowData.length + 1;
             let count = '';

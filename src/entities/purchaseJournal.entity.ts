@@ -21,6 +21,12 @@ export class purchaseJournal {
     transaction_date: Date;
 
     @Column({
+        type:'varchar',
+        length: 225
+    })
+    description: string;
+
+    @Column({
         type:'timestamp'
     })
     created_date: Date;
@@ -64,9 +70,4 @@ export class purchaseJournal {
     @Exclude({ toPlainOnly: true })
     msupplier: m_supplier;
 
-
-    @ManyToOne((_column) => m_customer)
-    @JoinColumn({ name: 'id_customer'})
-    @Exclude({ toPlainOnly: true })
-    mcustomer: m_customer;
 }

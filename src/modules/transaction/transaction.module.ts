@@ -10,21 +10,26 @@ import { PurchaseJournalController } from '@controllers/transaction/purchase-jou
 import { purchaseJournalRepository } from '@repository/purchase-journal.repository';
 
 import { PurchaseJournalService } from '@services/transaction/purchase-journal/purchase-journal.service';
+import { UtilsService } from '@utils/utils.service';
+import { MasterModule } from '@modules/master/master.module';
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([
             purchaseJournal
         ]),
-        AuthModule
+        AuthModule,
+        MasterModule
     ],
     controllers: [
         PurchaseJournalController
     ],
     providers: [
-        purchaseJournalRepository
+        purchaseJournalRepository,
+        PurchaseJournalService,
     ],
     exports: [
+        purchaseJournalRepository,
         PurchaseJournalService
     ]
 })

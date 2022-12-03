@@ -19,7 +19,11 @@ export class MSupplierService {
         return this.mSuppRepo.getSupplier(filterDto);
     }
 
-    async getUserByUUID(code: string): Promise<m_supplier> {
+    async getSupplierByID(code: any): Promise<m_supplier> {
+        return await this.mSuppRepo.findOne({ where: { id_supplier: code}});
+    }
+
+    async getSupplierByUUID(code: string): Promise<m_supplier> {
         return await this.mSuppRepo.getUserByUUID(code);
     }
 
@@ -84,7 +88,7 @@ export class MSupplierService {
 
     async updateUser(payload: m_supplierUpdateInterface): Promise<m_supplier> {
         const { uuid, address, city, isActive, inactiveDate, country, email, name, phone, postalcode, updated, cp } = payload;
-        const user = await this.getUserByUUID(uuid);
+        const user = await this.getSupplierByUUID(uuid);
         if (!user) {
             throw new NotFoundException({
                 data: '',
@@ -109,7 +113,7 @@ export class MSupplierService {
     }
 
     async deactivateUser(uuid: string) {
-        const user = await this.getUserByUUID(uuid);
+        const user = await this.getSupplierByUUID(uuid);
         user.isActive = 'N';
         user.inactiveDate = new Date(this.utils.formatDate(new Date()));
         user.updated = new Date(this.utils.formatDate(new Date())); 

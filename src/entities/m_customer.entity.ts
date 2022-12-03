@@ -116,8 +116,4 @@ export class m_customer {
         nullable: true
     })
     inactiveDate: Date;
-
-    @OneToMany((_column) => purchaseJournal, purchaseJournal => purchaseJournal.mcustomer)
-    @Exclude({ toPlainOnly: true })
-    purchaseJournal: purchaseJournal[];
 }
