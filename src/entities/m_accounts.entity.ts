@@ -21,7 +21,7 @@ export class m_accounts {
     account_name: string;
 
     @Column({
-        type:'double'
+        type:'float'
     })
     balance: number;
 
@@ -32,12 +32,12 @@ export class m_accounts {
     isActive: string;
 
     @Column({
-        type:'datetime'
+        type:'timestamp'
     })
     updated: Date;
 
     @Column({
-        type:'datetime'
+        type:'timestamp'
     })
     createdDate: Date;
 

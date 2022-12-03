@@ -7,6 +7,7 @@ import { configValidationSchema } from '@config/config.schema';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { AuthModule } from '@modules/auth/auth.module';
+import { TransactionModule } from '@modules/transaction/transaction.module';
 
 
 @Module({
@@ -31,7 +32,8 @@ import { AuthModule } from '@modules/auth/auth.module';
       }),
     }),
     AuthModule,
-    MasterModule],
+    MasterModule,
+    TransactionModule],
   controllers: [AppController],
   providers: [AppService]
 })

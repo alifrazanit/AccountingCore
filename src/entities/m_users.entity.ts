@@ -113,18 +113,18 @@ export class m_users {
     isActive: string;
 
     @Column({
-        type:'datetime',
+        type:'timestamp',
         nullable: true
     })
     updated: Date;
 
     @Column({
-        type:'datetime'
+        type:'timestamp'
     })
     createdDate: Date;
 
     @Column({
-        type:'datetime',
+        type:'timestamp',
         nullable: true
     })
     inactiveDate: Date;

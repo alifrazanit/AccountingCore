@@ -29,12 +29,12 @@ export class m_products {
     id_group_product: number;
 
     @Column({
-        type:'double'
+        type:'float'
     })
     selling_price: number;
 
     @Column({
-        type:'double'
+        type:'float'
     })
     purchase_price: number;
 
@@ -87,24 +87,24 @@ export class m_products {
     min_stock: number;
 
     @Column({
-        type:'integer',
+        type:'varchar',
         length: 1,
     })
     isActive: string;
 
     @Column({
-        type:'datetime',
+        type:'timestamp',
         nullable: true
     })
     updated: Date;
 
     @Column({
-        type:'datetime'
+        type:'timestamp'
     })
     createdDate: Date;
 
     @Column({
-        type:'datetime',
+        type:'timestamp',
         nullable: true
     })
     inactiveDate: Date;

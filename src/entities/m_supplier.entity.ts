@@ -1,4 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn} from 'typeorm';
+import { purchaseJournal } from '@entities/purchaseJournal.entity';
+import { Exclude } from 'class-transformer';
+
 @Entity()
 export class m_supplier {
     @PrimaryGeneratedColumn()
@@ -103,19 +106,23 @@ export class m_supplier {
     isActive: string;
 
     @Column({
-        type:'datetime',
+        type:'timestamp',
         nullable: true
     })
     updated: Date;
 
     @Column({
-        type:'datetime'
+        type:'timestamp'
     })
     createdDate: Date;
 
     @Column({
-        type:'datetime',
+        type:'timestamp',
         nullable: true
     })
     inactiveDate: Date;
+
+    @OneToMany((_column) => purchaseJournal, purchaseJournal => purchaseJournal.msupplier)
+    @Exclude({ toPlainOnly: true })
+    purchaseJournal: purchaseJournal[];
 }
