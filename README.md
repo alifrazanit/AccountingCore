@@ -24,7 +24,7 @@
 
 ## Description
 
-AccountingCore adalah sebuah project RESTful API akuntansi perusahaan dagang yang dibuat dengan bahasa pemrograman [Nest](https://github.com/nestjs/nest) dan menggunakan metode [Agile](https://id.wikipedia.org/wiki/Agile_Development_Methods).
+AccountingCore adalah sebuah project RESTful API akuntansi perusahaan dagang sederhana yang dibuat dengan bahasa pemrograman [Nest](https://github.com/nestjs/nest) dan menggunakan metode [Agile](https://id.wikipedia.org/wiki/Agile_Development_Methods).
 
 Pengembangan Aplikasi ini dibagi menjadi beberapa tahapan sprint berdasarkan module yang diperoleh dari hasil analisa project - project yang serupa dan berdasarkan pengetahuan dasar akuntansi.
 
