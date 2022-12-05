@@ -32,7 +32,7 @@ Kelemahan dalam aplikasi ini adalah tidak adanya orang yang ahli dalam akuntansi
 
 dokumentasi dari API Anda bisa lihat di link berikut: https://documenter.getpostman.com/view/24292726/2s8Yt1rUtF
 
-FE : https://github.com/alifrazanit/AccountingWeb
+FE : https://github.com/alifrazanit/AccountingWeb (React)
 ## Installation
 
 ```bash
