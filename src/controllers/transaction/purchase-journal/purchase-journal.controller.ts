@@ -7,12 +7,12 @@ import { GetActionFilterDto } from '@dto/filters/action-filter.dto';
 import { purchaseJournal } from '@entities/purchaseJournal.entity';
 import { callback } from '@config/interfaces/common/callback.interface';
 import {  purchaseJournalDto} from '@dto/models/purchase_journal.dto';
-import { purchaseJournalInterface } from '@interfaces/models/purchase-journal.interface';
+import { purchaseJournalInterface, purchaseJournalLineInterface } from '@interfaces/models/purchase-journal.interface';
 import { GetUser } from '@decorators/get-employee.decorator';
 import { m_users } from '@entities/m_users.entity';
 import { MSupplierService } from '@services/master/m-supplier/m-supplier.service';
 
-@Controller('transaction/purchase-journal')
+@Controller('accounting/post/purchase-journal')
 @UseGuards(AuthGuard())
 export class PurchaseJournalController {
     constructor(
@@ -38,20 +38,23 @@ export class PurchaseJournalController {
         @GetUser() user: m_users) {
         const journalCode: string = await this.purchaseJournalService.genCode();
         const supplier = await this.supplierService.getSupplierByID(body.id_supplier);
-        console.log('supplier', body)
-        console.log('supplier', supplier)
-//         const payload:purchaseJournalInterface = {
-//             jp_code: journalCode,
-//             transaction_date: new Date(),
-//             description: body.description,
-//             created_by: user.nik,
-//             created_date: new Date(),
-//             dis_term: body.dis_term,
-//             ed_dist_term: body.ed_dist_term,
-//             ed_term: body.ed_term,
-// id_jp: null,
-// id_supplier: 
-//         }
+        
+        const payload:purchaseJournalInterface = {
+            jp_code: journalCode,
+            transaction_date: new Date(),
+            description: body.description,
+            created_by: user.nik,
+            created_date: new Date(),
+            dis_term: body.dis_term,
+            ed_dist_term: body.ed_dist_term,
+            ed_term: body.ed_term,
+            id_jp: null,
+            id_supplier: supplier.id_supplier,
+            reason_update: '',
+            updated_date: null
+        }
+
+        const payloadLine: purchaseJournalLineInterface[] = [];
 
         // const payload: m_accountCreatesInterface = {
         //     account_code: await this.accountsService.genCode(),

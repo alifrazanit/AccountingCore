@@ -8,6 +8,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { AuthModule } from '@modules/auth/auth.module';
 import { TransactionModule } from '@modules/transaction/transaction.module';
+import { PurchaseController } from './controllers/transaction/purchase/purchase.controller';
+import { PurchaseService } from './services/transaction/purchase/purchase.service';
 
 
 @Module({
@@ -34,7 +36,7 @@ import { TransactionModule } from '@modules/transaction/transaction.module';
     AuthModule,
     MasterModule,
     TransactionModule],
-  controllers: [AppController],
-  providers: [AppService]
+  controllers: [AppController, PurchaseController],
+  providers: [AppService, PurchaseService]
 })
 export class AppModule {}

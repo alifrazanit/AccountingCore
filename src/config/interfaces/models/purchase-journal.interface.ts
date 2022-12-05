@@ -14,7 +14,7 @@ export interface purchaseJournalInterface {
 }
 
 export interface purchaseJournalLineInterface {
-    iid_product: number;
+    nominal: number;
     qty: number;
     price: number;
     subtotal: number;
