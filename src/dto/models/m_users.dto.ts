@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, MaxLength, IsInt, Max, IsEmail, IsOptional, Matches } from 'class-validator';
-
+import { Exclude } from 'class-transformer';
 
 export class m_usersDto {
     id_users: any;
@@ -197,4 +197,5 @@ export class signUpDto{
     @IsEmail()
     @MaxLength(120)
     email: string;
+    
 }
