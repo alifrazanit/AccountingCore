@@ -13,6 +13,10 @@ export class AccountsService {
         private utils: UtilsService
     ) { }
 
+    async getOneAccountBy(params: any): Promise<m_accounts> {
+        return await this.mActionRepo.findOne({ where : params})
+    }
+
     async getAction(filterDto: GetActionFilterDto): Promise<m_accounts[]> {
         return await this.mActionRepo.getAction(filterDto);
     }

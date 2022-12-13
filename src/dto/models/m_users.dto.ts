@@ -168,3 +168,33 @@ export class loginDto{
     @MaxLength(200)
     password: string;
 }
+
+export class signUpDto{
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(80)
+    name: string;
+
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(15)
+    @Matches(/^(\+62|62)?[\s-]?0?8[1-9]{1}\d{1}[\s-]?\d{4}[\s-]?\d{2,5}$/, {
+        message: 'phone maks lenght = 13 & min length = 10, phone wajib diawali 62 | +62 | 08'
+    })
+    phone: string;
+
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(50)
+    username: string;
+
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(200)
+    password: string;
+
+    @IsNotEmpty()
+    @IsEmail()
+    @MaxLength(120)
+    email: string;
+}

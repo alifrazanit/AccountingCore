@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, Query, UseGuards, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, BadRequestException, Query, UseGuards, NotFoundException } from '@nestjs/common';
 import { AccountsService } from '@services/master/accounts/accounts.service';
 import { callback } from '@config/interfaces/common/callback.interface';
 import { m_accountsCreateDto, m_accountsUpdateDto } from '@dto/models/m_accounts.dto';
@@ -9,9 +9,11 @@ import { m_accountCreatesInterface, m_accountUpdateInterface } from '@config/int
 import { UtilsService } from '@utils/utils.service';
 import { GetUser } from '@decorators/get-employee.decorator';
 import { m_users } from '@entities/m_users.entity';
+import { Label } from '@config/label';
 @Controller('master/accounts')
 @UseGuards(AuthGuard())
 export class AccountsController {
+    label = Label;
     constructor(
         private accountsService: AccountsService,
         private utils: UtilsService
@@ -30,7 +32,15 @@ export class AccountsController {
 
     @Get('/:code')
     async getUserByUUID(@Param('code') code: string): Promise<callback> {
-        let data:m_accounts = await this.accountsService.getActionByCode(code);
+        let data: m_accounts = await this.accountsService.getOneAccountBy({ account_code: code });
+        if (!data) {
+            throw new NotFoundException({
+                data: '',
+                error: true,
+                message: this.label.notification.dataNotfound,
+                status: 404
+            });
+        }
         return {
             data,
             error: false,
@@ -44,9 +54,19 @@ export class AccountsController {
         @Body() body: m_accountsCreateDto,
         @GetUser() user: m_users) {
         const tmpData: any = body;
+        const account_name = String(tmpData.account_name).charAt(0).toUpperCase() + String(tmpData.account_name).slice(1);
+        const isAccountExist = await this.accountsService.getOneAccountBy({ account_name });
+        if (isAccountExist) {
+            throw new BadRequestException({
+                data: '',
+                error: true,
+                message: this.label.notification.dataalreadyexist + 'account_name',
+                status: 404
+            });
+        }
         const payload: m_accountCreatesInterface = {
             account_code: await this.accountsService.genCode(),
-            account_name: String(tmpData.account_name).charAt(0).toUpperCase() + String(tmpData.account_name).slice(1),
+            account_name,
             balance: 0,
             createdDate: new Date(this.utils.formatDate(new Date())),
             isActive: 'Y',
@@ -63,7 +83,7 @@ export class AccountsController {
 
     @Put('/:account_code/update')
     async updateAccount(
-        @Param('account_code') account_code: string, 
+        @Param('account_code') account_code: string,
         @Body() body: m_accountsUpdateDto,
         @GetUser() user: m_users) {
         let tmpData: any[] = await this.accountsService.getAction({ search: account_code });
@@ -93,7 +113,7 @@ export class AccountsController {
     @Delete('/:account_code/delete')
     async deleteAction(@Param('account_code') account_code: string): Promise<callback> {
         let data: m_accounts = await this.accountsService.getActionByCode(account_code);
-        if(!data){
+        if (!data) {
             throw new NotFoundException({
                 data: '',
                 error: true,

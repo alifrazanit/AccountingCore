@@ -3,6 +3,8 @@ export const Label = {
         dataNotfound: 'Data Not Found!',
         duplicateError: 'already exists!',
         failedLogin: 'Username or password invalid!',
-        accessDenied: 'Access Denied'
+        accessDenied: 'Access Denied',
+        dataalreadyexist: 'Error Duplicate field : ',
+        invalid: 'Invalid'
     }
 }

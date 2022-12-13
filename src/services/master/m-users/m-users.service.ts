@@ -15,6 +15,10 @@ export class MUsersService {
         private utils: UtilsService
     ) { }
 
+    async getOneUserBy(params: any): Promise<m_users> {
+        return await this.mUserRepo.findOne({ where : params})
+    }
+
     getUser(filterDto: GetActionFilterDto): Promise<m_users[]> {
         return this.mUserRepo.getUser(filterDto);
     }

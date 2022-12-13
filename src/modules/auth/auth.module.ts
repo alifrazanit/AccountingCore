@@ -9,6 +9,7 @@ import { AuthService } from '@services/auth/auth.service';
 import { mUsersRepository } from '@repository/m_users.repository';
 import { JwtStrategy } from '@strategy/jwt.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MUsersService } from '@services/master/m-users/m-users.service';
 
 @Module({
     imports: [
@@ -37,7 +38,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         mUsersRepository,
         UtilsService,
         JwtStrategy,
-        ConfigService
+        ConfigService,
+        MUsersService
     ],
     exports: [
         AuthService,
