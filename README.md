@@ -22,6 +22,8 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+## _On Going Project_
+
 ## Description
 
 AccountingCore adalah sebuah project RESTful API akuntansi perusahaan dagang sederhana yang dibuat dengan bahasa pemrograman [Nest](https://github.com/nestjs/nest) dan menggunakan metode [Agile](https://id.wikipedia.org/wiki/Agile_Development_Methods).
@@ -33,6 +35,11 @@ Kelemahan dalam aplikasi ini adalah tidak adanya orang yang ahli dalam akuntansi
 dokumentasi dari API Anda bisa lihat di link berikut: https://documenter.getpostman.com/view/24292726/2s8Yt1rUtF
 
 FE : https://github.com/alifrazanit/AccountingWeb (Angular)
+
+## Processing Time
+- Monday  : 10 PM - 12 PM
+- Tuesday  : 10 PM - 12 PM
+
 ## Installation
 
 ```bash
