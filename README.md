@@ -22,7 +22,7 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## _On Going Project_
+## AccountingCore _On Going Project_
 
 ## Description
 
@@ -33,6 +33,16 @@ Pengembangan Aplikasi ini dibagi menjadi beberapa tahapan sprint berdasarkan mod
 Kelemahan dalam aplikasi ini adalah tidak adanya orang yang ahli dalam akuntansi yang dilibatkan dalam proses pengembanagan aplikasi ini sehingga akan dimungkinan adanya kesalahan terutama dalam bisnis proses aplikasi akuntansi itu sendiri.
 
 dokumentasi dari API Anda bisa lihat di link berikut: https://documenter.getpostman.com/view/24292726/2s8Yt1rUtF
+
+FE : https://github.com/alifrazanit/AccountingWeb (Angular)
+
+AccountingCore is a simple enterprise accounting RESTful API project built with [Nest](https://github.com/nestjs/nest) programming language and using method [Agile](https://id.wikipedia.org/wiki/Agile_Development_Methods).  
+
+The development of this application is divided into several sprint stages based on modules obtained from the analysis of similar projects and based on basic knowledge of accounting.
+
+The weakness in this application is that there are no people who are experts in accounting who are involved in the process of developing this application so there is a possibility of errors, especially in the business process of the accounting application itself.
+
+You can see the documentation of the API at the following link https://documenter.getpostman.com/view/24292726/2s8Yt1rUtF
 
 FE : https://github.com/alifrazanit/AccountingWeb (Angular)
 
