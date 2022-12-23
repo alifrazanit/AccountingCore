@@ -28,6 +28,7 @@
     "@nestjs/jwt": "^9.0.0",
     "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/serve-static": "^2.2.2",
     "@nestjs/typeorm": "^9.0.1",
     "@types/crypto-js": "^4.1.1",
     "@types/passport-jwt": "^3.0.6",

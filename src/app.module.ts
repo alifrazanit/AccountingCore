@@ -10,10 +10,14 @@ import { AuthModule } from '@modules/auth/auth.module';
 import { TransactionModule } from '@modules/transaction/transaction.module';
 import { PurchaseController } from './controllers/transaction/purchase/purchase.controller';
 import { PurchaseService } from './services/transaction/purchase/purchase.service';
-
+import { MenuHeaderTopController } from './controllers/templates/menu-header-top/menu-header-top.controller';
+import { ServeStaticModule } from '@nestjs/serve-static/dist/serve-static.module';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+    }),
     ConfigModule.forRoot({
       envFilePath: [`.env.stage.${process.env.STAGE}`],
       validationSchema: configValidationSchema
@@ -36,7 +40,7 @@ import { PurchaseService } from './services/transaction/purchase/purchase.servic
     AuthModule,
     MasterModule,
     TransactionModule],
-  controllers: [AppController, PurchaseController],
+  controllers: [AppController, PurchaseController, MenuHeaderTopController],
   providers: [AppService, PurchaseService]
 })
 export class AppModule {}
